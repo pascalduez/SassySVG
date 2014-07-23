@@ -1,0 +1,100 @@
+
+// SassyFilters: SVG helpers
+// -------------------------
+
+
+/**
+ * Format a proper SVG data URI.
+ * ---
+ * @requires {function} empty
+ * ---
+ * @param {String} $data - SVG data
+ * @param {String} $mime-type ('image/svg+xml')
+ * @param {String} $encoding ('charset=utf-8')
+ * @param {String} $fragment ('') - fragment identifier
+ * ---
+ * @link https://tools.ietf.org/html/rfc2397
+ * @link http://www.w3.org/TR/SVG11/linking.html
+ * ---
+ * @ignore data:[<MIME-type>][;charset=<encoding>][;base64],<data>[#fragment]
+ * ---
+ * @return {String}
+ */
+@function svg-data-uri(
+  $data,
+  $mime-type: 'image/svg+xml',
+  $encoding: 'charset=utf-8',
+  $fragment: ''
+) {
+  $result: '';
+  $parts: (
+    'data:',
+    $mime-type,
+    ';#{$encoding}',
+    ',#{$data}',
+    '##{$fragment}'
+  );
+
+  @each $part in $parts {
+    @if not empty($part) and str-length($part) > 1 {
+      $result: $result + $part;
+    }
+  }
+
+  @return quote($result);
+}
+
+
+/**
+ * Format and encode an inline SVG.
+ * ---
+ * @requires {function} conf
+ * @requires {function} SassySVG::svg-encode
+ * @requires {function} svg-data-uri
+ * ---
+ * @param {String} $svgStr - stringified SVG
+ * @param {String} $encoding (conf.encoding) - data type 'raw' | 'base64' | 'escaped'
+ * @param {String} $fragment ('') - fragment identifier
+ * ---
+ * @return {String}
+ */
+@function svg-inline(
+  $svg,
+  $encoding: conf(encoding),
+  $fragment: ''
+) {
+  $return: '';
+
+  $svgStr: if(is-file($svg), svg-import($svg), $svg);
+
+  $args: (
+    data: svg-encode($svgStr, $encoding),
+    fragment: $fragment
+  );
+  @if $encoding == 'base64' {
+    $args: map-merge($args, (encoding: 'base64'));
+  }
+
+  $data-uri: svg-data-uri($args...);
+
+  @return url($data-uri);
+}
+
+
+/**
+ * Read and import an external SVG file.
+ * ---
+ * @requires {function} conf
+ * @requires {function} SassySVG::svg-read
+ * ---
+ * @param {String} $file - file name
+ * @param {String} $basePath (conf(basePath)) - Base path of folder to import from
+ * ---
+ * @return {String}
+ */
+@function svg-import(
+  $file,
+  $basePath: conf(basePath)
+) {
+  @return svg-read($file, $basePath);
+}

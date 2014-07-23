@@ -1,0 +1,256 @@
+
+// SassySVG: SVG API
+// -----------------
+
+
+/**
+ * Helper: format a map of attributes.
+ * ---
+ * @requires {function} empty
+ * @requires {function} _join
+ * ---
+ * @param {Map} $attributes (())
+ * ---
+ * @return {String}
+*/
+@function attributes(
+  $attributes: ()
+) {
+  $result: ();
+
+  @each $key, $value in $attributes {
+    @if not empty($value) {
+      $result: append($result, '#{$key}="#{$value}"');
+    }
+  }
+
+  @return _join($result, ' ');
+}
+
+
+/**
+ * Helper: format a proper SVG tag.
+ * ---
+ * @requires {function} empty
+ * @requires {function} attributes
+ * @requires {function} _join
+ * ---
+ * @param {String} $name - tag name
+ * @param {Map} $attributes (null)
+ * @param {String} $content (null)
+ * ---
+ * @return {String}
+ */
+@function tag(
+  $name,
+  $attributes: null,
+  $content: null
+) {
+  $result: (
+    '<#{$name}',
+    if(empty($attributes), '', ' ' + attributes($attributes)),
+    if(empty($content), '/>', '>#{$content}</#{$name}>')
+  );
+
+  @return _join($result);
+}
+
+
+/**
+ * Helper: return whether a tag map has childs.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Boolean}
+ */
+@function has-childs(
+  $tag
+) {
+  @each $key, $value in $tag {
+    @if type-of($value) == map {
+      @return true;
+    }
+  }
+
+  @return false;
+}
+
+
+/**
+ * Helper: filter a tag map and return its childs.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Map}
+ */
+@function get-childs(
+  $tag
+) {
+  $childs: ();
+
+  @each $key, $value in $tag {
+    @if type-of($value) == map {
+      $childs: map-merge($childs, ($key: $value));
+    }
+  }
+
+  @return if(length($childs) > 0, $childs, null);
+}
+
+
+/**
+ * Helper: filter a tag map and return its attributes.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Map}
+ */
+@function get-attrs(
+  $tag
+) {
+  $attrs: ();
+
+  @each $key, $value in $tag {
+    @if type-of($value) != map {
+      $attrs: map-merge($attrs, ($key: $value));
+    }
+  }
+
+  @return if(length($attrs) > 0, $attrs, null);
+}
+
+
+/**
+ * Format the main SVG wrapper.
+ * ---
+ * @requires {function} tag
+ * ---
+ * @param {Map} $attributes
+ * ---
+ * @return {String}
+ */
+@function svg(
+  $map
+) {
+  $attrs: get-attrs($map);
+  $attributes: map-merge((
+    xmlns: "http://www.w3.org/2000/svg",
+    width: null,
+    height: null,
+    viewBox: null,
+    enable-background: null
+  ), if($attrs, $attrs, ()));
+
+  $childs: get-childs($map);
+
+  @return tag(svg, $attributes, if($childs, build($childs), null));
+}
+
+
+/**
+ * .
+ * ---
+ * @requires {function} get-attrs
+ * @requires {function} get-childs
+ * @requires {function} tag
+ * ---
+ * @param {Map} $map
+ * ---
+ * @return {String}
+ */
+@function build(
+  $map
+) {
+  $result: '';
+
+  @each $key, $value in $map {
+    $attrs: get-attrs($value);
+    $childs: get-childs($value);
+    $tag: tag($key, $attrs, if($childs, build($childs), null));
+    $result: $result + $tag;
+  }
+
+  @return unquote($result);
+}
+
+
+/**
+ * .
+ * ---
+ * @requires {function} map-deep-merge
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+@function svg-update(
+  $map,
+  $keys,
+  $new
+) {
+  @return map-deep-merge($map, $keys, $new);
+}
+
+
+/**
+ * .
+ * ---
+ * @requires {function} map-deep-merge
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+@function svg-append(
+  $map,
+  $keys,
+  $new
+) {
+  @if length($keys) == 1 {
+    @return map-merge($map, (nth($keys, 1): $new));
+  }
+  @return map-deep-merge($map, $keys, $new);
+}
+
+
+
+
+
+
+
+// Some draft crap...
+
+// $idgen: 0;
+// @function id($prefix: 'S') {
+//   $idgen: $idgen + 1 !global;
+//   @return $prefix + unique-id() + $idgen;
+// }
+//
+//
+// @function key-set($map, $key) {
+//   @if map-has-key($map, $key) {
+//     @return $key + '_' + unique-id();
+//   }
+//   @return $key;
+// }
+//
+// @function key-get($key) {
+//   $index: str-index($key, '_');
+//   @if $index {
+//     @return str-slice($key, 1, ($index - 1));
+//   }
+//   @return $key;
+// }
+//
+// @function map-append($map, $new) {
+//   $tmp: ();
+//   @each $key, $value in $new {
+//     $tmp: map-merge($tmp, (key-set($map, $key): $value));
+//   }
+//
+//   @return map-merge($map, $tmp);
+// }

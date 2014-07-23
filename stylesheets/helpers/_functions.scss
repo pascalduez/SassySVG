@@ -1,0 +1,221 @@
+
+// SassySVG: helpers functions
+// ---------------------------
+
+
+/**
+ * Returns a list of all keys in a map.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {String} $separator (space) - space | comma | auto
+ * ---
+ * @return {List}
+ */
+@function _map-keys(
+  $map,
+  $separator: space
+) {
+  @return join((), map-keys($map), $separator);
+}
+
+
+/**
+ * Returns a list of all values in a map.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {String} $separator - space | comma | auto
+ * ---
+ * @return {List}
+ */
+@function _map-values(
+  $map,
+  $separator: space
+) {
+  @return join((), map-values($map), $separator);
+}
+
+
+/**
+ * Test whether `$value` is empty.
+ * ---
+ * @access private
+ * ---
+ * @param {*} $value
+ * ---
+ * @return {Bool}
+ */
+@function empty($value) {
+  @if not $value
+       or $value == ""
+       or $value == 0
+       or $value == ()
+       or length($value) == 0 {
+    @return true;
+  }
+  @return false;
+}
+
+
+/**
+ * Join `$list` into a string.
+ * ---
+ * @access private
+ * ---
+ * @param {List} $list - the list to convert
+ * @param {String} $glue ('') - a string to separate each element of the list
+ * ---
+ * @return {String}
+ */
+@function _join(
+  $list,
+  $glue: ''
+) {
+  $length: length($list);
+  $result: '';
+
+  @if $length < 1 {
+    @return $result;
+  }
+
+  @for $i from 1 through $length {
+    $result: $result
+             + nth($list, $i)
+             + if($i != $length, $glue, '');
+  }
+
+  @return $result;
+}
+
+
+/**
+ * A Sass micro-templating function.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $format
+ * @param {Arglist | Map} $args
+ * ---
+ * @return {String}
+ */
+@function template(
+  $format,
+  $args...
+) {
+  $result: $format;
+
+  @each $key, $value in keywords($args) {
+    $token: "{{#{$key}}}";
+    $length: str-length($token);
+    $index: str-index($result, $token);
+
+    @if $index {
+      $result: if($index > 1, str-slice($result, 1, $index - 1), "")
+               + $value
+               + str-slice($result, ($index + $length));
+
+      @if str-index($result, $token) {
+        $result: template($result, $args...);
+      }
+    }
+  }
+
+  @return $result;
+}
+
+
+/**
+ * Test whether `$value` looks like a file.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $value
+ * @param {String} $extension ('svg')
+ * ---
+ * @return {Boolean}
+ */
+@function is-file(
+  $value,
+  $extension: svg
+) {
+  $ext: '.#{$extension}';
+  $length: str-length($ext);
+
+  @return type-of($value) == string
+      and $value != ''
+      and not not str-index($value, $ext)
+      and str-slice($value, -$length) == $ext;
+}
+
+
+/**
+ * Recursively fetch deep value from nested map.
+ * ---
+ * @access private
+ * ---
+ * @source https://gist.github.com/HugoGiraudel/9933331
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * ---
+ * @return {*}
+ */
+@function map-fetch(
+  $map,
+  $keys
+) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+
+/**
+ * Set or update a deep nested value in `$map`.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+@function map-deep-merge(
+  $map,
+  $keys,
+  $new
+) {
+$orig: $map;
+  $cache: ();
+  $length: length($keys);
+  $last: nth($keys, $length);
+
+  @if $length == 1 {
+    @return map-merge($map, (nth($keys, 1): $new));
+  }
+
+  @each $key in $keys {
+    $map: map-get($map, $key);
+    @if $key == $last {
+      $map: map-merge($map, $new);
+    }
+    $cache: append($cache, $map);
+  }
+
+  $i: $length;
+  @while $i > 1 {
+    $prev: $i - 1;
+    $cache: set-nth($cache, $prev, map-merge(
+      nth($cache, $prev),
+      (nth($keys, $i): nth($cache, $i))
+    ));
+    $i: $prev;
+  }
+
+  @return map-merge($orig, (nth($keys, 1): nth($cache, 1)));
+}

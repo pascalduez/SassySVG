@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------------
+// SassySVG - Sass SVG toolset.
+// -----------------------------------------------------------------------------
+// Repository: https://github.com/pascalduez/SassySVG
+// -----------------------------------------------------------------------------
+
+//
+// Import configuration
+//
+@import "config/config";
+
+//
+// Import helpers
+//
+@import "helpers/functions";
+@import "helpers/svg";
+
+//
+// Import SVG
+//
+@import "svg/svg";

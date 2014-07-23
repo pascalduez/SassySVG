@@ -1,0 +1,47 @@
+
+// SassySVG: configuration
+// -----------------------
+
+
+/**
+ * Default settings.
+ * ---
+ * @type Map
+ */
+$svg-defaults: (
+
+  // Encoding of the SVG filters as data URI: raw | escaped | base64.
+  encoding: "raw",
+
+  // Base path of folder containing external SVG files,
+  // must be relative to project root (dir you run Sass from).
+  basePath: "svg"
+
+);
+
+
+/**
+ * User settings.
+ * ---
+ * @type Map
+ */
+$svg-settings: () !default;
+
+
+/**
+ * Retrieve a configuration item.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $key - configuration item key
+ * ---
+ * @return {*}
+ */
+@function conf($key) {
+  @if not map-has-key($svg-defaults, $key) {
+    @warn "No item `#{$key}` found in configuration.";
+    @return false;
+  }
+
+  @return map-get(map-merge($svg-defaults, $svg-settings), $key);
+}

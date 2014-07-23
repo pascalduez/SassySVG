@@ -1,0 +1,173 @@
+
+/*
+ * Global test styles.
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Spinnaker);
+
+// $breakpoints: (
+//   "small": (min-width: 450px),
+//   "medium": (min-width: 750px),
+//   "large": (min-width: 950px)
+// );
+//
+// @mixin breakpoint($name) {
+//   @if map-has-key($breakpoints, $name) {
+//     @media #{inspect(map-get($breakpoints, $name))} {
+//       @content;
+//     }
+//   }
+// }
+//
+// %clearfix {
+//   &:before,
+//   &:after {
+//     content: " ";
+//     display: table;
+//   }
+//   &:after {
+//     clear: both;
+//   }
+// }
+
+$color: Plum;
+
+body {
+  font-family: sans-serif;
+  background: $color;
+  margin: 0;
+}
+
+main {
+  width: 90%;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Spinnaker', sans-serif;
+  font-weight: normal;
+  color: white;
+}
+
+h1 {
+  padding: 1em .6em;
+  margin: 0 0 2em;
+  background: lighten($color, 2%);
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+h3 {
+  padding: 0 0 .6em;
+  margin: 1em 0;
+  border-bottom: 1px solid darken($color, 5%);
+}
+
+
+
+/*
+ * Test SassySVG
+ */
+
+@import "SassySVG";
+
+$svg-settings: (
+  basePath: "test/svg"
+);
+
+
+/*
+ * Test SVG helpers
+ */
+
+.test--helpers {
+  $svg-str: '<svg xmlns="http://www.w3.org/2000/svg">
+    <filter id="custom">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feComponentTransfer>
+        <feFuncA tableValues="0 .7" type="table"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+  </svg>';
+
+  $encodings: "raw", "escaped", "base64";
+  $files: "twitter", "facebook", "googleplus", "xing", "linkedin";
+
+  .test--svg-encode {
+    .test {
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      width: 100px;
+      height: 50px;
+      display: inline-block;
+      background: black;
+    }
+
+    @each $encoding in $encodings {
+      .#{$encoding} {
+        // Gecko only.
+        filter: svg-inline($svg-str, $encoding, $fragment: "custom");
+      }
+    }
+  }
+
+  .test--svg-import {
+    .test {
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+    }
+
+    @each $file in $files {
+      .#{$file} {
+        background: svg-inline("#{$file}.svg");
+      }
+    }
+  }
+}
+
+
+/*
+ * Test SVG API
+ */
+
+.test--api {
+  $svg: (
+    width: 80px,
+    height: 80px,
+    viewBox: 0 0 80 80,
+    enable-background: new 0 0 80 80,
+
+    circle: (
+      cx: 40,
+      cy: 40,
+      r: 40
+    )
+  );
+
+  .test {
+    width: map-get($svg, width) * 1.5;
+    height: map-get($svg, height) * 2.5;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: left center;
+  }
+
+  .svg-build {
+    background-image: svg-inline(svg($svg));
+  }
+
+  $updated: svg-update($svg, circle, (fill: wh));
+  .svg-update {
+    background-image: svg-inline(svg($updated));
+  }
+
+  $append: svg-append($updated, rect, (x: 25, y: 25, width: 30, height: 30));
+  .svg-append {
+    background-image: svg-inline(svg($append));
+  }
+}

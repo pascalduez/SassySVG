@@ -1,0 +1,74 @@
+
+// SassySVG: SVG strings manipulation
+// ----------------------------------
+
+
+// Deprecated
+// This was just a test, to see how it works with manipulating SVG strings.
+// Looks like a dead end.
+
+
+// Get an attribute value.
+@function str-attr-get(
+  $svgStr,
+  $name
+) {
+  $result: $svgStr;
+
+  $length: str-length($name);
+  $index: str-index($result, $name);
+
+  $result: str-slice($result, ($index + $length + 2));
+  $result: str-slice($result, 1, (str-index($result, '"') - 1));
+
+  @return unquote($result);
+}
+
+
+// Update an attribute value.
+@function str-attr-upd(
+  $svgStr,
+  $name,
+  $new
+) {
+  $length: str-length($name);
+  $index: str-index($svgStr, $name);
+
+  $head: str-slice($svgStr, 1, ($index + $length + 1));
+  $tmp: str-slice($svgStr, str-length($head) + 1);
+  $tail: str-slice($tmp, str-index($tmp, '"'));
+
+  @return $head + $new + $tail;
+}
+
+
+// Set a new attribute.
+@function str-attr-set(
+  $svgStr,
+  $name,
+  $value
+) {
+  $new: ' #{$name}="#{$value}"';
+  $buffer: str-index($svgStr, '/>') or str-index($svgStr, '>');
+
+  $head: str-slice($svgStr, 1, ($buffer - 1));
+  $tail: str-slice($svgStr, $buffer);
+
+  @return $head + $new + $tail;
+}
+
+
+// Delete an attribute.
+@function str-attr-del(
+  $svgStr,
+  $name
+) {
+  $length: str-length($name);
+  $index: str-index($svgStr, $name);
+
+  $head: str-slice($svgStr, 1, ($index - 2));
+  $tmp: str-slice($svgStr, ($index + $length + 2));
+  $tail: str-slice($tmp, (str-index($tmp, '"') + 1));
+
+  @return $head + $tail;
+}

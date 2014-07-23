@@ -1,0 +1,125 @@
+
+@include describe("The _join function") {
+  $list-1: (one, two, three);
+  $list-2: ("one", "two", "three");
+
+  @include it("should always return a string") {
+    @include should(expect(_join($list-1, ",")), to(have-type-of("string")));
+    @include should(expect(_join($list-2, "/")), to(have-type-of("string")));
+  }
+
+  @include it("should return a concatenated string") {
+    @include should(expect(_join($list-1, ", ")), to(be("one, two, three")));
+    @include should(expect(_join($list-2, "/")), to(be("one/two/three")));
+  }
+}
+
+
+
+@include describe("The template function") {
+  $input: '<svg xmlns="http://www.w3.org/2000/svg" width="{{width}}" height="{{height}}"></svg>';
+  $output: '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"></svg>';
+
+  @include it("should always return a string") {
+    @include should(expect(template($input, $width: 10, $height: 10)), to(have-type-of("string")));
+  }
+
+  @include it("should return a capitalized string") {
+    @include should(expect(template($input, $width: 10, $height: 10)), to(be($output)));
+  }
+}
+
+
+
+@include describe("The empty function") {
+  $true: false, null, "", 0, ();
+  $false: true, "str", 1, (1,), (1: 1);
+
+  @include it("should always return a boolean") {
+    @include should(expect(empty(0)), to(have-type-of("bool")));
+    @include should(expect(empty(1)), to(have-type-of("bool")));
+  }
+
+  @include it("should test for empty values") {
+    @each $test in $true {
+      @include should(expect(empty($test)), to(be-truthy()));
+    }
+    @each $test in $false {
+      @include should(expect(empty($test)), to(be-falsy()));
+    }
+  }
+}
+
+
+
+@include describe("The is-file function") {
+  $true: is-file("test.svg");
+  $false: is-file("img/svg");
+
+  @include it("should always return a boolean") {
+    @include should(expect($true), to(have-type-of("bool")));
+    @include should(expect($false), to(have-type-of("bool")));
+  }
+
+  @include it("should test for a file name") {
+    @include should(expect($true), to(be-truthy()));
+    @include should(expect($false), to(be-falsy()));
+  }
+}
+
+
+
+@include describe("The map-fetch function") {
+  $map: (
+    one: (
+      two: (
+        three: "flag!"
+      )
+    )
+  );
+
+  $test: map-fetch($map, one two three);
+
+  @include it("should return a deep nested value") {
+    @include should(expect($test), to(be("flag!")));
+  }
+}
+
+
+
+@include describe("The map-deep-merge function") {
+  $map: (
+    one: (
+      val: 1,
+      two: (
+        val: 2,
+        three: (
+          val: 3,
+          four: (
+            val: 4
+          )
+        )
+      )
+    ),
+    foo: "foo",
+    bar: "bar"
+  );
+
+  $append: map-deep-merge($map, one two three four, (test: "flag!"));
+  $append-val: map-fetch($append, one two three four test);
+
+  $update: map-deep-merge($map, one two three four, (val: "flag!"));
+  $update-val: map-fetch($update, one two three four val);
+
+  @include it("should always return a map") {
+    @include should(expect($append), to(have-type-of("map")));
+  }
+
+  @include it("should append a new value") {
+    @include should(expect($append-val), to(be("flag!")));
+  }
+
+  @include it("should update a defined value") {
+    @include should(expect($update-val), to(be("flag!")));
+  }
+}
