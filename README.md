@@ -5,9 +5,17 @@ Sass SVG toolset.
 This is a __Work In Progress__ (not production or release ready).  
 As such, it is not published on npm or RubyGems yet.
 
-Started as an export of [SassyFilters](https://github.com/pascalduez/SassyFilters) SVG helpers.  
+Started as an export of [SassyFilters] SVG helpers.  
 Evolving into a sort of proof of concept to see how far we can get with SVG support/tooling in Sass.  
 And whether it makes sense or not...
+
+Experimental, so open to ideas and contributions.
+
+*Online [preview](http://pascalduez.github.io/SassySVG/test) (test folder).*  
+*Online [Documentation](http://pascalduez.github.io/SassySVG/docs) (generated with [SassDoc]).*
+
+[SassyFilters]: https://github.com/pascalduez/SassyFilters
+[SassDoc]: https://github.com/SassDoc/sassdoc
 
 
 ## Helpers

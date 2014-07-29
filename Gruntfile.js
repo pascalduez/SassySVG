@@ -6,8 +6,10 @@ var config = {
   scss: 'test/sass',
   css: 'test/css',
   img: 'test/img',
-  src: 'stylesheets',
-  dist: 'dist'
+  src: 'sass',
+  dist: 'dist',
+  docs: 'docs',
+  bootcamp: 'node_modules/bootcamp/dist'
 };
 
 var banner = [
@@ -44,7 +46,7 @@ module.exports = function (grunt) {
             '--load-path',
             '<%= conf.root %>/' + config[target],
             '--load-path',
-            '<%= conf.root %>/node_modules/bootcamp/dist',
+            '<%= conf.bootcamp %>',
             '--require',
             '<%= conf.root %>/lib/helpers.rb',
             '--update',
@@ -119,19 +121,17 @@ module.exports = function (grunt) {
 
     copy: {
       www: {
-        files: [
-          {
-            expand: true,
-            src: ['docs/**'],
-            dest: 'www/'
-          },
-          {
-            expand: true,
-            cwd: 'test/',
-            src: ['index.html', 'img/**/*', 'css/*'],
-            dest: 'www/test'
-          }
-        ]
+        files: [{
+          expand: true,
+          src: ['docs/**'],
+          dest: 'www/'
+        },
+        {
+          expand: true,
+          cwd: 'test/',
+          src: ['index.html', 'img/**/*', 'css/*'],
+          dest: 'www/test'
+        }]
       }
     },
 
@@ -176,8 +176,8 @@ module.exports = function (grunt) {
 
     sassdoc: {
       default: {
-        src: 'stylesheets',
-        dest: 'docs',
+        src: '<%= conf.src %>',
+        dest: '<%= conf.docs %>',
         options: {
           verbose: true,
           display: {

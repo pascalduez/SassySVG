@@ -83,6 +83,7 @@
  * ---
  * @access private
  * ---
+ * @author Hugo Giraudel
  * @source https://gist.github.com/HugoGiraudel/9933331
  * ---
  * @param {Map} $map
@@ -125,7 +126,7 @@
  * @requires {function} SassySVG::svg-encode
  * @requires {function} svg-data-uri
  * ---
- * @param {String} $svgStr - stringified SVG
+ * @param {String} $svg - stringified SVG or path to an SVG file (relative to basePath)
  * @param {String} $encoding (conf.encoding) - data type 'raw' | 'base64' | 'escaped'
  * @param {String} $fragment ('') - fragment identifier
  * ---

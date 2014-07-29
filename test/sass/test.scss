@@ -161,7 +161,7 @@ $svg-settings: (
     background-image: svg-inline(svg($svg));
   }
 
-  $updated: svg-update($svg, circle, (fill: wh));
+  $updated: svg-update($svg, circle, (fill: white));
   .svg-update {
     background-image: svg-inline(svg($updated));
   }

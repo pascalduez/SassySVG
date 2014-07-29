@@ -121,6 +121,7 @@ h3 {
  * ---
  * @access private
  * ---
+ * @author Hugo Giraudel
  * @source https://gist.github.com/HugoGiraudel/9933331
  * ---
  * @param {Map} $map
@@ -163,7 +164,7 @@ h3 {
  * @requires {function} SassySVG::svg-encode
  * @requires {function} svg-data-uri
  * ---
- * @param {String} $svgStr - stringified SVG
+ * @param {String} $svg - stringified SVG or path to an SVG file (relative to basePath)
  * @param {String} $encoding (conf.encoding) - data type 'raw' | 'base64' | 'escaped'
  * @param {String} $fragment ('') - fragment identifier
  * ---
@@ -322,8 +323,8 @@ h3 {
   background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle cx="40" cy="40" r="40"/></svg>');
 }
 .test--api .svg-update {
-  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle fill="wh"/></svg>');
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle cx="40" cy="40" r="40" fill="white"/></svg>');
 }
 .test--api .svg-append {
-  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle fill="wh"/><rect x="25" y="25" width="30" height="30"/></svg>');
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle cx="40" cy="40" r="40" fill="white"/><rect x="25" y="25" width="30" height="30"/></svg>');
 }
