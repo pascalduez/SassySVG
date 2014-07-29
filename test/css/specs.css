@@ -1,0 +1,243 @@
+@charset "UTF-8";
+/*! sassyjson - v1.1.8 - 2014-06-01 */
+/**
+ * Default settings.
+ * ---
+ * @type Map
+ */
+/**
+ * User settings.
+ * ---
+ * @type Map
+ */
+/**
+ * Retrieve a configuration item.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $key - configuration item key
+ * ---
+ * @return {*}
+ */
+/**
+ * Returns a list of all keys in a map.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {String} $separator (space) - space | comma | auto
+ * ---
+ * @return {List}
+ */
+/**
+ * Returns a list of all values in a map.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {String} $separator - space | comma | auto
+ * ---
+ * @return {List}
+ */
+/**
+ * Test whether `$value` is empty.
+ * ---
+ * @access private
+ * ---
+ * @param {*} $value
+ * ---
+ * @return {Bool}
+ */
+/**
+ * Join `$list` into a string.
+ * ---
+ * @access private
+ * ---
+ * @param {List} $list - the list to convert
+ * @param {String} $glue ('') - a string to separate each element of the list
+ * ---
+ * @return {String}
+ */
+/**
+ * A Sass micro-templating function.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $format
+ * @param {Arglist | Map} $args
+ * ---
+ * @return {String}
+ */
+/**
+ * Test whether `$value` looks like a file.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $value
+ * @param {String} $extension ('svg')
+ * ---
+ * @return {Boolean}
+ */
+/**
+ * Recursively fetch deep value from nested map.
+ * ---
+ * @access private
+ * ---
+ * @author Hugo Giraudel
+ * @source https://gist.github.com/HugoGiraudel/9933331
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * ---
+ * @return {*}
+ */
+/**
+ * Set or update a deep nested value in `$map`.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+/**
+ * Format a proper SVG data URI.
+ * ---
+ * @requires {function} empty
+ * ---
+ * @param {String} $data - SVG data
+ * @param {String} $mime-type ('image/svg+xml')
+ * @param {String} $encoding ('charset=utf-8')
+ * @param {String} $fragment ('') - fragment identifier
+ * ---
+ * @link https://tools.ietf.org/html/rfc2397
+ * @link http://www.w3.org/TR/SVG11/linking.html
+ * ---
+ * @ignore data:[<MIME-type>][;charset=<encoding>][;base64],<data>[#fragment]
+ * ---
+ * @return {String}
+ */
+/**
+ * Format and encode an inline SVG.
+ * ---
+ * @requires {function} conf
+ * @requires {function} SassySVG::svg-encode
+ * @requires {function} svg-data-uri
+ * ---
+ * @param {String} $svg - stringified SVG or path to an SVG file (relative to basePath)
+ * @param {String} $encoding (conf.encoding) - data type 'raw' | 'base64' | 'escaped'
+ * @param {String} $fragment ('') - fragment identifier
+ * ---
+ * @return {String}
+ */
+/**
+ * Read and import an external SVG file.
+ * ---
+ * @requires {function} conf
+ * @requires {function} SassySVG::svg-read
+ * ---
+ * @param {String} $file - file name
+ * @param {String} $basePath (conf(basePath)) - Base path of folder to import from
+ * ---
+ * @return {String}
+ */
+/**
+ * Helper: format a map of attributes.
+ * ---
+ * @requires {function} empty
+ * @requires {function} _join
+ * ---
+ * @param {Map} $attributes (())
+ * ---
+ * @return {String}
+*/
+/**
+ * Helper: format a proper SVG tag.
+ * ---
+ * @requires {function} empty
+ * @requires {function} attributes
+ * @requires {function} _join
+ * ---
+ * @param {String} $name - tag name
+ * @param {Map} $attributes (null)
+ * @param {String} $content (null)
+ * ---
+ * @return {String}
+ */
+/**
+ * Helper: return whether a tag map has childs.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Boolean}
+ */
+/**
+ * Helper: filter a tag map and return its childs.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Map}
+ */
+/**
+ * Helper: filter a tag map and return its attributes.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Map}
+ */
+/**
+ * Format the main SVG wrapper.
+ * ---
+ * @requires {function} tag
+ * ---
+ * @param {Map} $attributes
+ * ---
+ * @return {String}
+ */
+/**
+ * .
+ * ---
+ * @requires {function} get-attrs
+ * @requires {function} get-childs
+ * @requires {function} tag
+ * ---
+ * @param {Map} $map
+ * ---
+ * @return {String}
+ */
+/**
+ * .
+ * ---
+ * @requires {function} map-deep-merge
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+/**
+ * .
+ * ---
+ * @requires {function} map-deep-merge
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+/* >> Bootcamp >> */
+Test Results {
+  Success: true;
+  Stats:  ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔ ✔;
+  Tests: 12;
+  Asserts: 26;
+  Passed: 12;
+  Failed: 0;
+  Skipped: 0;
+}
+
+/* << Bootcamp << */

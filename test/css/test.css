@@ -1,0 +1,330 @@
+/*
+ * Global test styles.
+ */
+@import url(http://fonts.googleapis.com/css?family=Spinnaker);
+body {
+  font-family: sans-serif;
+  background: plum;
+  margin: 0;
+}
+
+main {
+  width: 90%;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Spinnaker', sans-serif;
+  font-weight: normal;
+  color: white;
+}
+
+h1 {
+  padding: 1em .6em;
+  margin: 0 0 2em;
+  background: #e0a8e0;
+}
+h1 a {
+  color: white;
+  text-decoration: none;
+}
+
+h3 {
+  padding: 0 0 .6em;
+  margin: 1em 0;
+  border-bottom: 1px solid #d68dd6;
+}
+
+/*
+ * Test SassySVG
+ */
+/**
+ * Default settings.
+ * ---
+ * @type Map
+ */
+/**
+ * User settings.
+ * ---
+ * @type Map
+ */
+/**
+ * Retrieve a configuration item.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $key - configuration item key
+ * ---
+ * @return {*}
+ */
+/**
+ * Returns a list of all keys in a map.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {String} $separator (space) - space | comma | auto
+ * ---
+ * @return {List}
+ */
+/**
+ * Returns a list of all values in a map.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {String} $separator - space | comma | auto
+ * ---
+ * @return {List}
+ */
+/**
+ * Test whether `$value` is empty.
+ * ---
+ * @access private
+ * ---
+ * @param {*} $value
+ * ---
+ * @return {Bool}
+ */
+/**
+ * Join `$list` into a string.
+ * ---
+ * @access private
+ * ---
+ * @param {List} $list - the list to convert
+ * @param {String} $glue ('') - a string to separate each element of the list
+ * ---
+ * @return {String}
+ */
+/**
+ * A Sass micro-templating function.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $format
+ * @param {Arglist | Map} $args
+ * ---
+ * @return {String}
+ */
+/**
+ * Test whether `$value` looks like a file.
+ * ---
+ * @access private
+ * ---
+ * @param {String} $value
+ * @param {String} $extension ('svg')
+ * ---
+ * @return {Boolean}
+ */
+/**
+ * Recursively fetch deep value from nested map.
+ * ---
+ * @access private
+ * ---
+ * @author Hugo Giraudel
+ * @source https://gist.github.com/HugoGiraudel/9933331
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * ---
+ * @return {*}
+ */
+/**
+ * Set or update a deep nested value in `$map`.
+ * ---
+ * @access private
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+/**
+ * Format a proper SVG data URI.
+ * ---
+ * @requires {function} empty
+ * ---
+ * @param {String} $data - SVG data
+ * @param {String} $mime-type ('image/svg+xml')
+ * @param {String} $encoding ('charset=utf-8')
+ * @param {String} $fragment ('') - fragment identifier
+ * ---
+ * @link https://tools.ietf.org/html/rfc2397
+ * @link http://www.w3.org/TR/SVG11/linking.html
+ * ---
+ * @ignore data:[<MIME-type>][;charset=<encoding>][;base64],<data>[#fragment]
+ * ---
+ * @return {String}
+ */
+/**
+ * Format and encode an inline SVG.
+ * ---
+ * @requires {function} conf
+ * @requires {function} SassySVG::svg-encode
+ * @requires {function} svg-data-uri
+ * ---
+ * @param {String} $svg - stringified SVG or path to an SVG file (relative to basePath)
+ * @param {String} $encoding (conf.encoding) - data type 'raw' | 'base64' | 'escaped'
+ * @param {String} $fragment ('') - fragment identifier
+ * ---
+ * @return {String}
+ */
+/**
+ * Read and import an external SVG file.
+ * ---
+ * @requires {function} conf
+ * @requires {function} SassySVG::svg-read
+ * ---
+ * @param {String} $file - file name
+ * @param {String} $basePath (conf(basePath)) - Base path of folder to import from
+ * ---
+ * @return {String}
+ */
+/**
+ * Helper: format a map of attributes.
+ * ---
+ * @requires {function} empty
+ * @requires {function} _join
+ * ---
+ * @param {Map} $attributes (())
+ * ---
+ * @return {String}
+*/
+/**
+ * Helper: format a proper SVG tag.
+ * ---
+ * @requires {function} empty
+ * @requires {function} attributes
+ * @requires {function} _join
+ * ---
+ * @param {String} $name - tag name
+ * @param {Map} $attributes (null)
+ * @param {String} $content (null)
+ * ---
+ * @return {String}
+ */
+/**
+ * Helper: return whether a tag map has childs.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Boolean}
+ */
+/**
+ * Helper: filter a tag map and return its childs.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Map}
+ */
+/**
+ * Helper: filter a tag map and return its attributes.
+ * ---
+ * @param {Map} $tag
+ * ---
+ * @return {Map}
+ */
+/**
+ * Format the main SVG wrapper.
+ * ---
+ * @requires {function} tag
+ * ---
+ * @param {Map} $attributes
+ * ---
+ * @return {String}
+ */
+/**
+ * .
+ * ---
+ * @requires {function} get-attrs
+ * @requires {function} get-childs
+ * @requires {function} tag
+ * ---
+ * @param {Map} $map
+ * ---
+ * @return {String}
+ */
+/**
+ * .
+ * ---
+ * @requires {function} map-deep-merge
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+/**
+ * .
+ * ---
+ * @requires {function} map-deep-merge
+ * ---
+ * @param {Map} $map
+ * @param {List} $keys
+ * @param {Map} $new
+ * ---
+ * @return {Map}
+ */
+/*
+ * Test SVG helpers
+ */
+.test--helpers .test--svg-encode .test {
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  width: 100px;
+  height: 50px;
+  display: inline-block;
+  background: black;
+}
+.test--helpers .test--svg-encode .raw {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="custom"><feGaussianBlur in="SourceGraphic" stdDeviation="1"/><feComponentTransfer><feFuncA tableValues="0 .7" type="table"></feFuncA></feComponentTransfer></filter></svg>#custom');
+}
+.test--helpers .test--svg-encode .escaped {
+  filter: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22custom%22%3E%3CfeGaussianBlur%20in%3D%22SourceGraphic%22%20stdDeviation%3D%221%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncA%20tableValues%3D%220%20.7%22%20type%3D%22table%22%3E%3C%2FfeFuncA%3E%3C%2FfeComponentTransfer%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#custom");
+}
+.test--helpers .test--svg-encode .base64 {
+  filter: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxmaWx0ZXIgaWQ9ImN1c3RvbSI+PGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjEiLz48ZmVDb21wb25lbnRUcmFuc2Zlcj48ZmVGdW5jQSB0YWJsZVZhbHVlcz0iMCAuNyIgdHlwZT0idGFibGUiPjwvZmVGdW5jQT48L2ZlQ29tcG9uZW50VHJhbnNmZXI+PC9maWx0ZXI+PC9zdmc+#custom");
+}
+.test--helpers .test--svg-import .test {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+.test--helpers .test--svg-import .twitter {
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path fill="%23fff" d="M32 16c0 8.837-7.164 16-16 16s-16-7.163-16-16c0-8.836 7.164-16 16-16s16 7.164 16 16zm-6.395-5.958c-.707.313-1.467.524-2.265.622.813-.488 1.438-1.262 1.733-2.182-.762.453-1.606.779-2.502.957-.721-.767-1.744-1.244-2.879-1.244-2.176 0-3.94 1.765-3.94 3.941 0 .307.035.609.103.897-3.275-.165-6.181-1.733-8.125-4.117-.338.581-.532 1.258-.532 1.979 0 1.369.696 2.573 1.753 3.281-.646-.021-1.254-.199-1.785-.494v.051c0 1.91 1.359 3.502 3.162 3.865-.331.09-.68.137-1.039.137-.254 0-.501-.023-.742-.07.501 1.566 1.957 2.706 3.682 2.736-1.349 1.058-3.049 1.688-4.895 1.688-.318 0-.632-.021-.939-.057 1.744 1.118 3.814 1.771 6.041 1.771 7.25 0 11.213-6.005 11.213-11.214l-.01-.51c.77-.552 1.438-1.246 1.966-2.037z"/></svg>');
+}
+.test--helpers .test--svg-import .facebook {
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path fill="%23fff" d="M16 0c-8.836 0-16 7.163-16 16 0 8.836 7.164 16 16 16s16-7.164 16-16c0-8.837-7.164-16-16-16zm4.242 17h-2.742v8.5h-4.5v-8.497l-2.5-.015v-3.488h2v-3.73c0-1.7 2.666-3.77 3.965-3.77h3.535v4h-1.787c-.58 0-.713.552-.713.91v2.59h3.428l-.686 3.5z"/></svg>');
+}
+.test--helpers .test--svg-import .googleplus {
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path fill="%23fff" d="M14.537 13.593c.355-.493.531-1.149.531-1.966 0-.49-.066-1.01-.2-1.562-.136-.551-.327-1.084-.576-1.598-.25-.516-.593-.939-1.03-1.275-.438-.334-.925-.502-1.464-.502-.76 0-1.348.283-1.765.845-.416.563-.625 1.236-.625 2.022 0 .383.047.787.141 1.213.094.424.239.85.436 1.273.195.424.424.807.687 1.145.261.34.58.615.956.828.375.213.771.318 1.188.318.791 0 1.364-.247 1.721-.741zm1.463-13.593c-8.836 0-16 7.164-16 16 0 8.837 7.164 16 16 16 8.837 0 16-7.163 16-16 0-8.836-7.163-16-16-16zm.552 24.59c-1.241 1.069-2.956 1.604-5.146 1.604-.482 0-.971-.039-1.465-.121s-.992-.219-1.494-.409c-.502-.193-.946-.431-1.329-.712-.386-.28-.699-.646-.943-1.092-.245-.444-.368-.94-.368-1.487 0-.498.152-1.05.453-1.654.262-.522.654-.974 1.178-1.354.522-.382 1.113-.671 1.776-.87.662-.2 1.294-.348 1.899-.441.604-.095 1.217-.147 1.838-.164-.521-.679-.784-1.287-.784-1.826l.024-.287.062-.239.099-.263.086-.264c-.328.04-.613.061-.858.061-1.218 0-2.261-.399-3.131-1.199-.869-.801-1.304-1.807-1.304-3.014 0-1.145.388-2.168 1.164-3.069.775-.904 1.731-1.636 2.866-1.89.767-.164 1.531-.398 2.29-.398h5.355l-1.654 1h-1.656c.58.5 1.029 1.02 1.348 1.682.318.661.479 1.42.479 2.14 0 .604-.094 1.176-.281 1.646-.188.469-.416.864-.686 1.149-.271.286-.539.559-.809.8-.271.24-.5.494-.687.751s-.282.535-.282.829c0 .212.067.422.202.626.136.203.31.399.526.589.218.188.455.385.717.588.261.204.523.432.783.68.262.25.502.521.719.81.216.29.393.637.525 1.042.137.404.203.839.203 1.305.001 1.3-.572 2.453-1.715 3.451zm9.448-14.09h-3v3h-1.5v-3h-3v-1.5h3v-3.5h1.5v3.5h3v1.5zm-9.632 10.75c-.042-.135-.114-.275-.216-.423l-.258-.374s-.178-.223-.324-.361l-.336-.312-.393-.312-.38-.282-.403-.28-.375-.259c-.138-.017-.343-.023-.613-.023-.44 0-.873.027-1.299.085-.424.058-.865.16-1.322.308-.458.146-.857.336-1.2.562-.345.229-.625.535-.845.919-.221.385-.331.821-.331 1.312 0 .557.145 1.053.435 1.489s.67.779 1.141 1.029c.469.249.961.434 1.476.557s1.033.185 1.556.185c.481 0 .941-.051 1.379-.152.436-.104.846-.262 1.23-.479.384-.218.688-.518.912-.9.226-.385.338-.833.338-1.348 0-.172-.018-.338-.057-.496l-.115-.445z"/></svg>');
+}
+.test--helpers .test--svg-import .xing {
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path fill="%23fff" d="M16 0c-8.836 0-16 7.163-16 16 0 8.836 7.164 16 16 16s16-7.164 16-16c0-8.837-7.164-16-16-16zm-5.197 20h-2.889c-.174 0-.303-.068-.377-.188-.076-.125-.08-.278 0-.439l3.068-5.413v-.015l-1.951-3.381c-.081-.162-.094-.289-.018-.414.074-.119.219-.15.393-.15h2.889c.443 0 .661.257.805.514l1.986 3.447-3.119 5.499c-.149.267-.356.54-.787.54zm13.658-13.384l-6.396 11.308v.02l4.074 7.439c.078.161.08.566.006.69-.075.118-.211.427-.385.427h-2.886c-.442 0-.664-.537-.808-.793l-4.104-7.65c.204-.365 6.428-11.703 6.428-11.703.156-.279.344-.854.773-.854h2.918c.175 0 .312.309.385.43.077.122.075.526-.005.686z"/></svg>');
+}
+.test--helpers .test--svg-import .linkedin {
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path fill="%23fff" d="M16 0c-8.836 0-16 7.163-16 16s7.164 16 16 16 16-7.163 16-16-7.164-16-16-16zm-5.5 25h-3.5v-12.5h3.5v12.5zm-1.573-14.079c-1.228 0-2.021-.87-2.021-1.944 0-1.1.82-1.943 2.072-1.943 1.254 0 2.021.844 2.047 1.943-.002 1.074-.795 1.944-2.098 1.944zm16.073 14.079h-4v-6.966c0-1.612-.461-2.712-1.867-2.712-1.072 0-1.717.742-1.999 1.458-.105.256-.134.615-.134.972v7.248h-4v-8.553c0-1.562.173-2.447.121-3.947h3.377l.18 1.5h.076c.512-.5 1.719-1.922 3.816-1.922 2.557 0 4.429 1.812 4.429 5.496l.001 7.426z"/></svg>');
+}
+
+/*
+ * Test SVG API
+ */
+.test--api .test {
+  width: 120px;
+  height: 200px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+.test--api .svg-build {
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle cx="40" cy="40" r="40"/></svg>');
+}
+.test--api .svg-update {
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle cx="40" cy="40" r="40" fill="white"/></svg>');
+}
+.test--api .svg-append {
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 80 80" enable-background="new 0 0 80 80"><circle cx="40" cy="40" r="40" fill="white"/><rect x="25" y="25" width="30" height="30"/></svg>');
+}
