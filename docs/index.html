@@ -34,10 +34,11 @@
 <div class="sidebar__body">
   
   
+    <button type="button" class="btn-toggle  js-btn-toggle" data-alt="Open all">Close all</button>
 
     
     
-      <p class="sidebar__item  sidebar__item--heading" data-slug="undefined"><a href="#undefined">Ungrouped</a></p>
+      <p class="sidebar__item  sidebar__item--heading" data-slug="config"><a href="#config">Configuration</a></p>
 
       
       
@@ -48,7 +49,7 @@
 
         
         
-          <p class="sidebar__item  sidebar__item--sub-heading" data-slug="undefined-variable"><a href="#undefined-variable">variables</a></p>
+          <p class="sidebar__item  sidebar__item--sub-heading" data-slug="config-variable"><a href="#config-variable">variables</a></p>
 
           
           
@@ -74,6 +75,36 @@
         
       
         
+
+        
+        
+
+        
+        
+        </div>
+      
+
+    
+      <p class="sidebar__item  sidebar__item--heading" data-slug="helpers"><a href="#helpers">Helpers</a></p>
+
+      
+      
+        <div>
+
+        
+        
+
+        
+        
+        </div>
+      
+
+    
+      <p class="sidebar__item  sidebar__item--heading" data-slug="undefined"><a href="#undefined">General</a></p>
+
+      
+      
+        <div>
 
         
         
@@ -231,7 +262,7 @@
     
     
       <section class="main__section">
-        <h1 class="main__heading" id="undefined">Ungrouped</h1>
+        <h1 class="main__heading" id="config">Configuration</h1>
 
         
         
@@ -241,7 +272,7 @@
 
           
           
-            <section class="main__sub-section" id="undefined-variable">
+            <section class="main__sub-section" id="config-variable">
               <h2 class="main__heading--secondary">variables</h2>
 
               
@@ -279,6 +310,8 @@
 );</code></pre>
 
   
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/config/_config.scss" class="item__source-link" target="_blank">View source</a>
+  
 </div>
 
 
@@ -311,6 +344,55 @@
     
     
 
+<h3 class="item__sub-heading">Map structure</h3>
+
+<table class="item__parameters">
+  <thead>
+    <tr>
+      <th scope="col"><span class="visually-hidden">Map key </span>Name</th>
+      <th scope="col"><span class="visually-hidden">Map key </span>Description</th>
+      <th scope="col"><span class="visually-hidden">Map key </span>Type</th>
+      <th scope="col"><span class="visually-hidden">Map key </span>Value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr class="item__parameter">
+        <th scope="row" data-label="name"><code>encoding</code></th>
+        <td data-label="desc"><p>Encoding of the SVG filters as data URI:
+                                  raw | escaped | base64.</p>
+</td>
+        <td data-label="type">
+        String
+        </td>
+        <td data-label="default">
+        
+          <code>&#39;raw&#39;</code>
+        
+        </td>
+      </tr>
+    
+      <tr class="item__parameter">
+        <th scope="row" data-label="name"><code>basePath</code></th>
+        <td data-label="desc"><p>Base path of folder containing external SVG files,
+                                  must be relative to project root (dir you run Sass from).</p>
+</td>
+        <td data-label="type">
+        String
+        </td>
+        <td data-label="default">
+        
+          <code>&#39;svg&#39;</code>
+        
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+
+
   
     
     
@@ -325,6 +407,10 @@
   
     
     
+
+
+
+  
 
 
 
@@ -382,6 +468,8 @@
   <pre class="item__code  language-scss"><code>$svg-settings: () !default;</code></pre>
 
   
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/config/_config.scss" class="item__source-link" target="_blank">View source</a>
+  
 </div>
 
 
@@ -395,7 +483,8 @@
     
   <h3 class="item__sub-heading">Description</h3>
 
-  <div class="item__description"><p>User settings.</p>
+  <div class="item__description"><p>User settings.
+Instanciate the same object in your stylesheets to override defaults.</p>
 </div>
 
 
@@ -424,10 +513,28 @@
   
     
     
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <div class="example__description"><p>Override defaults</p>
+</div>
+    
+    <pre class="example__code"><code class="language-scss">$svg-settings: (
+  encoding: &quot;base64&quot;
+);</code></pre>
+  </div>
+  
+
 
   
     
     
+
+
+
+  
 
 
 
@@ -463,6 +570,36 @@
               
             </section>
           
+        
+
+          
+          
+
+          
+          
+        
+
+      </section>
+    
+      <section class="main__section">
+        <h1 class="main__heading" id="helpers">Helpers</h1>
+
+        
+        
+
+          
+          
+
+          
+          
+        
+
+      </section>
+    
+      <section class="main__section">
+        <h1 class="main__heading" id="undefined">General</h1>
+
+        
         
 
           
@@ -567,6 +704,8 @@
  }"
     data-collapsed="@function svg-data-uri($data, $mime-type: &#39;image/svg+xml&#39;, $encoding: &#39;charset=utf-8&#39;, $fragment: &#39;&#39;) { ... }"><code>@function svg-data-uri($data, $mime-type: &#39;image/svg+xml&#39;, $encoding: &#39;charset=utf-8&#39;, $fragment: &#39;&#39;) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/helpers/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 
@@ -852,6 +991,8 @@
     data-collapsed="@function svg-inline($svg, $encoding: conf.encoding, $fragment: &#39;&#39;) { ... }"><code>@function svg-inline($svg, $encoding: conf.encoding, $fragment: &#39;&#39;) { ... }</code></pre>
 
   
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/helpers/_svg.scss" class="item__source-link" target="_blank">View source</a>
+  
 </div>
 
 
@@ -1093,6 +1234,8 @@
     data-collapsed="@function svg-import($file, $basePath: conf(basePath)) { ... }"><code>@function svg-import($file, $basePath: conf(basePath)) { ... }</code></pre>
 
   
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/helpers/_svg.scss" class="item__source-link" target="_blank">View source</a>
+  
 </div>
 
 
@@ -1302,6 +1445,8 @@
  }"
     data-collapsed="@function attributes($attributes: ()) { ... }"><code>@function attributes($attributes: ()) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 
@@ -1513,6 +1658,8 @@
  }"
     data-collapsed="@function tag($name, $attributes: null, $content: null) { ... }"><code>@function tag($name, $attributes: null, $content: null) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 
@@ -1760,6 +1907,8 @@
     data-collapsed="@function has-childs($tag) { ... }"><code>@function has-childs($tag) { ... }</code></pre>
 
   
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
+  
 </div>
 
 
@@ -1925,6 +2074,8 @@
  }"
     data-collapsed="@function get-childs($tag) { ... }"><code>@function get-childs($tag) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 
@@ -2106,6 +2257,8 @@
  }"
     data-collapsed="@function get-attrs($tag) { ... }"><code>@function get-attrs($tag) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 
@@ -2290,6 +2443,8 @@
  }"
     data-collapsed="@function svg($attributes) { ... }"><code>@function svg($attributes) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 
@@ -2476,6 +2631,8 @@
  }"
     data-collapsed="@function build($map) { ... }"><code>@function build($map) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 
@@ -2700,6 +2857,8 @@
     data-collapsed="@function svg-update($map, $keys, $new) { ... }"><code>@function svg-update($map, $keys, $new) { ... }</code></pre>
 
   
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
+  
 </div>
 
 
@@ -2914,6 +3073,8 @@
  }"
     data-collapsed="@function svg-append($map, $keys, $new) { ... }"><code>@function svg-append($map, $keys, $new) { ... }</code></pre>
 
+  
+    <a href="https://github.com/pascalduez/SassySVG/tree/master/sass/svg/_svg.scss" class="item__source-link" target="_blank">View source</a>
   
 </div>
 

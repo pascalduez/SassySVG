@@ -3,16 +3,19 @@
 // ---------------------------
 
 
-/**
- * Returns a list of all keys in a map.
- * ---
- * @access private
- * ---
- * @param {Map} $map
- * @param {String} $separator (space) - space | comma | auto
- * ---
- * @return {List}
- */
+////
+//// @group helpers
+//// @access private
+////
+
+
+/// Returns a list of all keys in a map.
+///
+/// @param {Map} $map
+/// @param {String} $separator (space) - space | comma | auto
+///
+/// @return {List}
+
 @function _map-keys(
   $map,
   $separator: space
@@ -21,16 +24,13 @@
 }
 
 
-/**
- * Returns a list of all values in a map.
- * ---
- * @access private
- * ---
- * @param {Map} $map
- * @param {String} $separator - space | comma | auto
- * ---
- * @return {List}
- */
+/// Returns a list of all values in a map.
+///
+/// @param {Map} $map
+/// @param {String} $separator - space | comma | auto
+///
+/// @return {List}
+
 @function _map-values(
   $map,
   $separator: space
@@ -39,15 +39,12 @@
 }
 
 
-/**
- * Test whether `$value` is empty.
- * ---
- * @access private
- * ---
- * @param {*} $value
- * ---
- * @return {Bool}
- */
+/// Test whether `$value` is empty.
+///
+/// @param {*} $value
+///
+/// @return {Bool}
+
 @function empty($value) {
   @if not $value
        or $value == ""
@@ -60,16 +57,13 @@
 }
 
 
-/**
- * Join `$list` into a string.
- * ---
- * @access private
- * ---
- * @param {List} $list - the list to convert
- * @param {String} $glue ('') - a string to separate each element of the list
- * ---
- * @return {String}
- */
+/// Join `$list` into a string.
+///
+/// @param {List} $list - the list to convert
+/// @param {String} $glue ('') - a string to separate each element of the list
+///
+/// @return {String}
+
 @function _join(
   $list,
   $glue: ''
@@ -91,16 +85,13 @@
 }
 
 
-/**
- * A Sass micro-templating function.
- * ---
- * @access private
- * ---
- * @param {String} $format
- * @param {Arglist | Map} $args
- * ---
- * @return {String}
- */
+/// A Sass micro-templating function.
+///
+/// @param {String} $format
+/// @param {Arglist | Map} $args
+///
+/// @return {String}
+
 @function template(
   $format,
   $args...
@@ -127,16 +118,13 @@
 }
 
 
-/**
- * Test whether `$value` looks like a file.
- * ---
- * @access private
- * ---
- * @param {String} $value
- * @param {String} $extension ('svg')
- * ---
- * @return {Boolean}
- */
+/// Test whether `$value` looks like a file.
+/// ---
+/// @param {String} $value
+/// @param {String} $extension ('svg')
+/// ---
+/// @return {Boolean}
+
 @function is-file(
   $value,
   $extension: svg
@@ -151,19 +139,16 @@
 }
 
 
-/**
- * Recursively fetch deep value from nested map.
- * ---
- * @access private
- * ---
- * @author Hugo Giraudel
- * @source https://gist.github.com/HugoGiraudel/9933331
- * ---
- * @param {Map} $map
- * @param {List} $keys
- * ---
- * @return {*}
- */
+/// Recursively fetch deep value from nested map.
+///
+/// @author Hugo Giraudel
+/// @source https://gist.github.com/HugoGiraudel/9933331
+///
+/// @param {Map} $map
+/// @param {List} $keys
+///
+/// @return {*}
+
 @function map-fetch(
   $map,
   $keys
@@ -175,17 +160,14 @@
 }
 
 
-/**
- * Set or update a deep nested value in `$map`.
- * ---
- * @access private
- * ---
- * @param {Map} $map
- * @param {List} $keys
- * @param {Map} $new
- * ---
- * @return {Map}
- */
+/// Set or update a deep nested value in `$map`.
+///
+/// @param {Map} $map
+/// @param {List} $keys
+/// @param {Map} $new
+///
+/// @return {Map}
+
 @function map-deep-merge(
   $map,
   $keys,

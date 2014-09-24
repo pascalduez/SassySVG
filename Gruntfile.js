@@ -19,7 +19,6 @@ var banner = [
   '// License: <%= pkg.license.type %>\n\n'
 ].join('');
 
-
 module.exports = function (grunt) {
 
   // Load all grunt tasks matching the `grunt-*` pattern.
@@ -31,9 +30,11 @@ module.exports = function (grunt) {
   // Time how long tasks take.
   require('time-grunt')(grunt);
 
+  var pkg = grunt.file.readJSON('package.json');
+
   grunt.initConfig({
 
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: pkg,
 
     conf: config,
 
@@ -176,8 +177,8 @@ module.exports = function (grunt) {
 
     sassdoc: {
       default: {
-        src: '<%= conf.src %>',
-        dest: '<%= conf.docs %>',
+        src: 'sass',
+        dest: 'docs',
         options: {
           verbose: true,
           display: {
@@ -185,7 +186,15 @@ module.exports = function (grunt) {
             alias: false,
             watermark: true
           },
-          package: '<%= pkg %>'
+          groups: {
+            'undefined': 'General',
+            config: 'Configuration',
+            helpers: 'Helpers',
+            svg: 'SVG API'
+          },
+          basePath: 'https://github.com/pascalduez/SassySVG/tree/master/sass',
+          package: pkg,
+          theme: 'default'
         }
       }
     }

@@ -3,11 +3,20 @@
 // -----------------------
 
 
-/**
- * Default settings.
- * ---
- * @type Map
- */
+////
+//// @group config
+////
+
+
+/// Default settings.
+///
+/// @type Map
+///
+/// @prop {String} encoding ('raw') - Encoding of the SVG filters as data URI:
+///                                   raw | escaped | base64.
+/// @prop {String} basePath ('svg') - Base path of folder containing external SVG files,
+///                                   must be relative to project root (dir you run Sass from).
+
 $svg-defaults: (
 
   // Encoding of the SVG filters as data URI: raw | escaped | base64.
@@ -20,23 +29,30 @@ $svg-defaults: (
 );
 
 
-/**
- * User settings.
- * ---
- * @type Map
- */
+/// User settings.
+/// Instanciate the same object in your stylesheets to override defaults.
+///
+/// @type Map
+///
+/// @example scss Override defaults
+/// $svg-settings: (
+///   encoding: "base64"
+/// );
+
 $svg-settings: () !default;
 
 
-/**
- * Retrieve a configuration item.
- * ---
- * @access private
- * ---
- * @param {String} $key - configuration item key
- * ---
- * @return {*}
- */
+/// Retrieve a configuration item.
+///
+/// @access private
+///
+/// @requires {variable} svg-defaults
+/// @requires {variable} svg-settings
+///
+/// @param {String} $key - configuration item key
+///
+/// @return {*}
+
 @function conf($key) {
   @if not map-has-key($svg-defaults, $key) {
     @warn "No item `#{$key}` found in configuration.";
