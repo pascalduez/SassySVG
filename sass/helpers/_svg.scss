@@ -3,23 +3,27 @@
 // -------------------------
 
 
-/**
- * Format a proper SVG data URI.
- * ---
- * @requires {function} empty
- * ---
- * @param {String} $data - SVG data
- * @param {String} $mime-type ('image/svg+xml')
- * @param {String} $encoding ('charset=utf-8')
- * @param {String} $fragment ('') - fragment identifier
- * ---
- * @link https://tools.ietf.org/html/rfc2397
- * @link http://www.w3.org/TR/SVG11/linking.html
- * ---
- * @ignore data:[<MIME-type>][;charset=<encoding>][;base64],<data>[#fragment]
- * ---
- * @return {String}
- */
+////
+//// @group helpers
+////
+
+
+/// Format a proper SVG data URI.
+///
+/// @requires {function} empty
+///
+/// @param {String} $data - SVG data
+/// @param {String} $mime-type ('image/svg+xml')
+/// @param {String} $encoding ('charset=utf-8')
+/// @param {String} $fragment ('') - fragment identifier
+///
+/// @link https://tools.ietf.org/html/rfc2397
+/// @link http://www.w3.org/TR/SVG11/linking.html
+///
+/// @ignore data:[<MIME-type>][;charset=<encoding>][;base64],<data>[#fragment]
+///
+/// @return {String}
+
 @function svg-data-uri(
   $data,
   $mime-type: 'image/svg+xml',
@@ -45,19 +49,18 @@
 }
 
 
-/**
- * Format and encode an inline SVG.
- * ---
- * @requires {function} conf
- * @requires {function} SassySVG::svg-encode
- * @requires {function} svg-data-uri
- * ---
- * @param {String} $svg - stringified SVG or path to an SVG file (relative to basePath)
- * @param {String} $encoding (conf.encoding) - data type 'raw' | 'base64' | 'escaped'
- * @param {String} $fragment ('') - fragment identifier
- * ---
- * @return {String}
- */
+/// Format and encode an inline SVG.
+///
+/// @requires {function} conf
+/// @requires {function} SassySVG::svg-encode
+/// @requires {function} svg-data-uri
+///
+/// @param {String} $svg - stringified SVG or path to an SVG file (relative to basePath)
+/// @param {String} $encoding (conf.encoding) - data type 'raw' | 'base64' | 'escaped'
+/// @param {String} $fragment ('') - fragment identifier
+///
+/// @return {String}
+
 @function svg-inline(
   $svg,
   $encoding: conf(encoding),
@@ -81,17 +84,16 @@
 }
 
 
-/**
- * Read and import an external SVG file.
- * ---
- * @requires {function} conf
- * @requires {function} SassySVG::svg-read
- * ---
- * @param {String} $file - file name
- * @param {String} $basePath (conf(basePath)) - Base path of folder to import from
- * ---
- * @return {String}
- */
+/// Read and import an external SVG file.
+///
+/// @requires {function} conf
+/// @requires {function} SassySVG::svg-read
+///
+/// @param {String} $file - file name
+/// @param {String} $basePath (conf(basePath)) - Base path of folder to import from
+///
+/// @return {String}
+
 @function svg-import(
   $file,
   $basePath: conf(basePath)
