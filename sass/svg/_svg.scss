@@ -3,16 +3,20 @@
 // -----------------
 
 
-/**
- * Helper: format a map of attributes.
- * ---
- * @requires {function} empty
- * @requires {function} _join
- * ---
- * @param {Map} $attributes (())
- * ---
- * @return {String}
-*/
+////
+//// @group svg
+////
+
+
+/// Helper: format a map of attributes.
+///
+/// @requires {function} empty
+/// @requires {function} _join
+///
+/// @param {Map} $attributes (())
+///
+/// @return {String}
+
 @function attributes(
   $attributes: ()
 ) {
@@ -28,19 +32,18 @@
 }
 
 
-/**
- * Helper: format a proper SVG tag.
- * ---
- * @requires {function} empty
- * @requires {function} attributes
- * @requires {function} _join
- * ---
- * @param {String} $name - tag name
- * @param {Map} $attributes (null)
- * @param {String} $content (null)
- * ---
- * @return {String}
- */
+/// Helper: format a proper SVG tag.
+///
+/// @requires {function} empty
+/// @requires {function} attributes
+/// @requires {function} _join
+///
+/// @param {String} $name - tag name
+/// @param {Map} $attributes (null)
+/// @param {String} $content (null)
+///
+/// @return {String}
+
 @function tag(
   $name,
   $attributes: null,
@@ -56,13 +59,12 @@
 }
 
 
-/**
- * Helper: return whether a tag map has childs.
- * ---
- * @param {Map} $tag
- * ---
- * @return {Boolean}
- */
+/// Helper: return whether a tag map has childs.
+///
+/// @param {Map} $tag
+///
+/// @return {Boolean}
+
 @function has-childs(
   $tag
 ) {
@@ -76,13 +78,12 @@
 }
 
 
-/**
- * Helper: filter a tag map and return its childs.
- * ---
- * @param {Map} $tag
- * ---
- * @return {Map}
- */
+/// Helper: filter a tag map and return its childs.
+///
+/// @param {Map} $tag
+///
+/// @return {Map}
+
 @function get-childs(
   $tag
 ) {
@@ -98,13 +99,12 @@
 }
 
 
-/**
- * Helper: filter a tag map and return its attributes.
- * ---
- * @param {Map} $tag
- * ---
- * @return {Map}
- */
+/// Helper: filter a tag map and return its attributes.
+///
+/// @param {Map} $tag
+///
+/// @return {Map}
+
 @function get-attrs(
   $tag
 ) {
@@ -120,15 +120,14 @@
 }
 
 
-/**
- * Format the main SVG wrapper.
- * ---
- * @requires {function} tag
- * ---
- * @param {Map} $attributes
- * ---
- * @return {String}
- */
+/// Format the main SVG wrapper.
+///
+/// @requires {function} tag
+///
+/// @param {Map} $attributes
+///
+/// @return {String}
+
 @function svg(
   $map
 ) {
@@ -147,17 +146,16 @@
 }
 
 
-/**
- * .
- * ---
- * @requires {function} get-attrs
- * @requires {function} get-childs
- * @requires {function} tag
- * ---
- * @param {Map} $map
- * ---
- * @return {String}
- */
+/// .
+///
+/// @requires {function} get-attrs
+/// @requires {function} get-childs
+/// @requires {function} tag
+///
+/// @param {Map} $map
+///
+/// @return {String}
+
 @function build(
   $map
 ) {
@@ -174,17 +172,16 @@
 }
 
 
-/**
- * .
- * ---
- * @requires {function} map-deep-merge
- * ---
- * @param {Map} $map
- * @param {List} $keys
- * @param {Map} $new
- * ---
- * @return {Map}
- */
+/// .
+///
+/// @requires {function} map-deep-merge
+///
+/// @param {Map} $map
+/// @param {List} $keys
+/// @param {Map} $new
+///
+/// @return {Map}
+
 @function svg-update(
   $map,
   $keys,
@@ -194,17 +191,16 @@
 }
 
 
-/**
- * .
- * ---
- * @requires {function} map-deep-merge
- * ---
- * @param {Map} $map
- * @param {List} $keys
- * @param {Map} $new
- * ---
- * @return {Map}
- */
+/// .
+///
+/// @requires {function} map-deep-merge
+///
+/// @param {Map} $map
+/// @param {List} $keys
+/// @param {Map} $new
+///
+/// @return {Map}
+
 @function svg-append(
   $map,
   $keys,
