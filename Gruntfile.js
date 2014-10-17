@@ -194,7 +194,10 @@ module.exports = function (grunt) {
           },
           basePath: 'https://github.com/pascalduez/SassySVG/tree/master/sass',
           package: pkg,
-          theme: 'default'
+          theme: 'default',
+          force: true,
+          interactive: false,
+          autofill: ['content', 'requires', 'throws']
         }
       }
     }
