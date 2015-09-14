@@ -14,8 +14,13 @@ Experimental, so open to ideas and contributions.
 *Online [preview](http://pascalduez.github.io/SassySVG/test) (test folder).*  
 *Online [Documentation](http://pascalduez.github.io/SassySVG/docs) (generated with [SassDoc]).*
 
+
+There's a [postcss-svg] plugin under development as well.
+
+
 [SassyFilters]: https://github.com/pascalduez/SassyFilters
 [SassDoc]: https://github.com/SassDoc/sassdoc
+[postcss-svg]: https://github.com/pascalduez/postcss-svg
 
 
 ## Helpers
