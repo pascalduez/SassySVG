@@ -161,7 +161,7 @@ WIP
 
 ## Authors
 
-[Pascal Duez](http://pascalduez.me)
+[Pascal Duez](https://github.com/pascalduez)
 
 
 
