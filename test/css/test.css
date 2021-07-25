@@ -104,6 +104,7 @@ h3 {
  * @param {String} $format
  * @param {Arglist | Map} $args
  * ---
+
  * @return {String}
  */
 /**
@@ -121,8 +122,8 @@ h3 {
  * ---
  * @access private
  * ---
- * @author Hugo Giraudel
- * @source https://gist.github.com/HugoGiraudel/9933331
+ * @author Kitty Giraudel
+ * @source https://gist.github.com/KittyGiraudel/9933331
  * ---
  * @param {Map} $map
  * @param {List} $keys
