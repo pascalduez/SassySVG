@@ -1,3 +1,5 @@
+<div align="center">⚠️ Archived project</div>
+
 # SassySVG
 
 Sass SVG toolset.
